@@ -17,12 +17,13 @@ import java.util.ArrayList;
 public class Main extends Application {
     private static ArrayList<Integer> nodes = new ArrayList<>();
 
-    // Metodo de javafx que inicia el hilo principal de javafx y usa setStage
+    // Metodo de javafx que inicia el hilo principal de javafx y usa setStage y setPane para pintar la interfaz inicial
     @Override
     public void start(Stage primaryStage){
         BST<Integer> tree = new BST<>();
         BorderPane pane = new BorderPane();
         BstPane view = new BstPane(tree);
+
         setPane(pane, view, tree);
         setStage(pane, primaryStage, "Arbol de exprecionnes");
     }
@@ -38,23 +39,27 @@ public class Main extends Application {
     //Metodo que usa el metodo start
     public void setPane(BorderPane pane, BstPane view, BST<Integer> tree){
         pane.setCenter(view);
+
         TextField textField = new TextField();
         textField.setPrefColumnCount(3);
         textField.setAlignment(Pos.BASELINE_RIGHT);
+
         Button insert = new Button("Insertar");
-        Button delete = new Button("Borrar");
-        addFunctionalities(textField, insert, delete, tree, view);
+        addFunctionalities(textField, insert, tree, view);
+
         HBox hBox = new HBox(5);
-        hBox.getChildren().addAll(new Label("Ingresa un token"), textField, insert, delete);
+        hBox.getChildren().addAll(new Label("Ingresa un token"), textField, insert);
         hBox.setAlignment(Pos.BASELINE_CENTER);
+
         pane.setBottom(hBox);
     }
 
-    public void addFunctionalities(TextField textField, Button insert, Button delete, BST<Integer> tree, BstPane view){
+    //Se agregan los eventos de OnAction al boton insert
+    public void addFunctionalities(TextField textField, Button insert, BST<Integer> tree, BstPane view){
 
         insert.setOnAction(e->{
             if(textField.getText().length() == 0) {
-                Alert alert = new Alert(Alert.AlertType.INFORMATION, "You haven't entered anything!", ButtonType.OK);
+                Alert alert = new Alert(Alert.AlertType.INFORMATION, "No has ingresado ningun token", ButtonType.OK);
                 alert.getDialogPane().setMinHeight(80);
                 alert.show();
             }
@@ -63,28 +68,15 @@ public class Main extends Application {
                 nodes.add(key);
                 if (tree.search(key)) {
                     view.displayTree();
-                    view.setStatus(key + " is already present!");
+                    view.setStatus(key + " ya esta insertado en el arbol");
                 } else {
                     tree.insert(key);
                     view.displayTree();
-                    view.setStatus(key + " is inserted!");
+                    view.setStatus(key + " se inserto");
                 }
                 textField.clear();
             }
         });
 
-        delete.setOnAction(e->{
-            int key = Integer.parseInt(textField.getText());
-            if(!tree.search(key)){
-                view.displayTree();
-                view.setStatus(key +" is not present!");
-            }
-            else{
-                tree.delete(key);
-                view.displayTree();
-                view.setStatus(key+" is replaced by its predecessor and is deleted!");
-            }
-            textField.clear();
-        });
     }
 }
