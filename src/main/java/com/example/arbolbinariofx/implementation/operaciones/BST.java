@@ -1,10 +1,13 @@
 package com.example.arbolbinariofx.implementation.operaciones;
 
-import com.example.arbolbinariofx.implementation.Tree;
-import com.example.arbolbinariofx.implementation.TreeNode;
+import com.example.arbolbinariofx.models.Tree;
+import com.example.arbolbinariofx.models.TreeNode;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+
+// En esta clase se encuentran la implentacion de
+// toda lo logica de como el arbol de comporta al momento de agregar caracters al arbol
 
 public class BST<E extends Comparable<E>> implements Tree<E> {
 

@@ -1,4 +1,4 @@
-package com.example.arbolbinariofx.implementation;
+package com.example.arbolbinariofx.models;
 
 
 public class TreeNode<E extends Comparable<E>> {

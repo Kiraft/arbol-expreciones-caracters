@@ -1,6 +1,6 @@
 package com.example.arbolbinariofx.gui.bst;
 
-import com.example.arbolbinariofx.implementation.TreeNode;
+import com.example.arbolbinariofx.models.TreeNode;
 import com.example.arbolbinariofx.implementation.operaciones.BST;
 
 import javafx.geometry.Insets;
@@ -13,7 +13,7 @@ import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
 import javafx.scene.text.Text;
 
-
+// Esta clase renderiza el Panel donde si dibuja el arbol y dibuja los nodos del arbol
 public class BstPane extends Pane {
     private BST<Integer> tree;
     private double radius = 15;

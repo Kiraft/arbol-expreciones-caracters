@@ -1,4 +1,4 @@
-package com.example.arbolbinariofx.implementation;
+package com.example.arbolbinariofx.models;
 
 
 public interface Tree<E> extends Iterable<E> {
